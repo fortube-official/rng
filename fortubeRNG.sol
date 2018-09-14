@@ -50,15 +50,15 @@ contract fortubeRNG {
     * @dev Returns a random number
     * @param srvSeed - the server seed for generating random numbers
     * @param range - set the range of random numbers
-    * @param prizeRank - a prize ranking
-    * @param prizeName - a prize Name
-    * @param eventHash - a event Hash
-    * @return a random numbers
+    * @param prizeRank - prize ranking
+    * @param prizeName - prize name
+    * @param eventHash - event hash
+    * @return random numbers
     */
     function generateWinner(bytes32 srvSeed, uint256 range, uint256 prizeRank, string prizeName, string eventHash) external onlyFounder returns (uint256) {
         uint256 seed = uint256(srvSeed);
         uint256 randomNumber = (uint256(keccak256(abi.encodePacked(block.blockhash(block.number-1), seed))) % range);
-        emit LogEventResult(randomNumber, srvSeed, prizeRank, prizeName,eventHash);
+        emit LogEventResult(randomNumber, srvSeed, prizeRank, prizeName, eventHash);
         return randomNumber;
     }
     
